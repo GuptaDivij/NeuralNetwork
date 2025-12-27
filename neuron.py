@@ -65,9 +65,7 @@ class Neuron:
         z = cache["z"]  # pre-activation value
 
         # grad_z = dL/dz = dL/da * da/dz
-        grad_z = self.activation.backward(z, grad_a) 
-
-        grad_z = np.float32(grad_z)
+        grad_z = self.activation.backward(z, grad_a).astype(np.float32)
 
         # Accumulate gradient for weights and bias
         self.dw += grad_z * x
